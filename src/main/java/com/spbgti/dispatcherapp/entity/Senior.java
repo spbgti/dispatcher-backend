@@ -22,9 +22,9 @@ public class Senior {
     @Column(name = "patronymic")
     private String patronymic;
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "speciality_id", nullable = false)
-    private Speciality speciality;*/
+    private Speciality speciality;
 
     public Senior() {
     }
@@ -67,11 +67,11 @@ public class Senior {
         this.patronymic = patronymic;
     }
 
-    /*public Speciality getSpeciality() {
+    public Speciality getSpeciality() {
         return speciality;
     }
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
-    }*/
+    }
 }
