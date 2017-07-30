@@ -2,26 +2,19 @@ package com.spbgti.dispatcherapp.entity;
 
 import com.spbgti.dispatcherapp.entity.Enum.Type;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-/**
- * Created by Gilbord on 29.07.2017.
- */
 @Entity
-@Table(name = "group")
+@Table(name = "STUDENT_GROUP")
 public class Group {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "group number")
-    private String groupNumber;
+    @Column(name = "number_of_group")
+    private String numberOfGroup;
 
     @Column(name = "type")
     private Type type;
@@ -31,8 +24,8 @@ public class Group {
 
     public Group(){}
 
-    public Group(String groupNumber, Type type, int numOfStudents) {
-        this.groupNumber = groupNumber;
+    public Group(String numberOfGroup, Type type, int numOfStudents) {
+        this.numberOfGroup = numberOfGroup;
         this.type = type;
         this.numOfStudents = numOfStudents;
     }
@@ -45,12 +38,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getGroupNumber() {
-        return groupNumber;
+    public String getNumberOfGroup() {
+        return numberOfGroup;
     }
 
-    public void setGroupNumberr(String groupNumber) {
-        this.groupNumber = groupNumber;
+    public void setNumberOfGroup(String numberOfGroup) {
+        this.numberOfGroup = numberOfGroup;
     }
 
     public Type getType() {
@@ -61,7 +54,7 @@ public class Group {
         this.type = type;
     }
 
-    public int getNumOfStudentsm() {
+    public int getNumOfStudents() {
         return numOfStudents;
     }
 

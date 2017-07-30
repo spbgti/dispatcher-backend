@@ -4,11 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-/**
- * Created by Gilbord on 29.07.2017.
- */
 @Entity
-@Table(name = "student")
+@Table(name = "STUDENT")
 public class Student {
     @Id
     @GeneratedValue(generator = "increment")
@@ -25,13 +22,13 @@ public class Student {
     private String patronymic;
 
     @ManyToOne
-    @JoinColumn(name = "chair_id", nullable = false)
+    @JoinColumn(name = "group_id", nullable = false)
     private Group group;
 
     public Student() {
     }
 
-    public Student( String name, String surname, String patronymic, Group group) {
+    public Student(String name, String surname, String patronymic, Group group) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;

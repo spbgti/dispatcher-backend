@@ -1,12 +1,10 @@
 package com.spbgti.dispatcherapp.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "teacher")
+@Table(name = "TEACHER")
 public class Teacher {
     @Id
     @GeneratedValue(generator = "increment")

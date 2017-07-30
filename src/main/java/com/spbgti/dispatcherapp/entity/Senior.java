@@ -1,15 +1,12 @@
 package com.spbgti.dispatcherapp.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
-/**
- * Created by Gilbord on 29.07.2017.
- */
+
 @Entity
-@Table(name = "senior")
+@Table(name = "SENIOR")
 public class Senior {
     @Id
     @GeneratedValue(generator = "increment")
