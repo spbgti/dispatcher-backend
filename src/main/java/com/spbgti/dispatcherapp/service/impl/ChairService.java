@@ -12,30 +12,30 @@ import java.util.List;
 public class ChairService implements ServiceInterface<Chair> {
 
     @Autowired
-    private ChairRepository chairRepository;
+    private ChairRepository chairs;
 
     @Override
     public Chair add(Chair entity) {
-        return chairRepository.saveAndFlush(entity);
+        return chairs.saveAndFlush(entity);
     }
 
     @Override
     public void delete(long id) {
-        chairRepository.delete(id);
+        chairs.delete(id);
     }
 
     @Override
     public Chair getByName(String name) {
-        return chairRepository.findByName(name);
+        return chairs.findByName(name);
     }
 
     @Override
     public Chair edit(Chair entity) {
-       return chairRepository.saveAndFlush(entity);
+       return chairs.saveAndFlush(entity);
     }
 
     @Override
     public List<Chair> getAll() {
-        return chairRepository.findAll();
+        return chairs.findAll();
     }
 }

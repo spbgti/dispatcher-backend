@@ -15,30 +15,30 @@ import java.util.List;
 public class SeniorService implements ServiceInterface<Candidate> {
 
     @Autowired
-    private SeniorRepository seniorRepository;
+    private SeniorRepository candidates;
 
     @Override
     public Candidate add(Candidate entity) {
-        return seniorRepository.saveAndFlush(entity);
+        return candidates.saveAndFlush(entity);
     }
 
     @Override
     public void delete(long id) {
-        seniorRepository.delete(id);
+        candidates.delete(id);
     }
 
     @Override
     public Candidate getByName(String name) {
-        return seniorRepository.findByName(name);
+        return candidates.findByName(name);
     }
 
     @Override
     public Candidate edit(Candidate entity) {
-        return seniorRepository.saveAndFlush(entity);
+        return candidates.saveAndFlush(entity);
     }
 
     @Override
     public List<Candidate> getAll() {
-        return seniorRepository.findAll();
+        return candidates.findAll();
     }
 }

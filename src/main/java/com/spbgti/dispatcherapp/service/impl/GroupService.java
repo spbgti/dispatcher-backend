@@ -15,30 +15,30 @@ import java.util.List;
 public class GroupService implements ServiceInterface<Group> {
 
     @Autowired
-    private GroupRepository groupRepository;
+    private GroupRepository groups;
 
     @Override
     public Group add(Group entity) {
-        return groupRepository.saveAndFlush(entity);
+        return groups.saveAndFlush(entity);
     }
 
     @Override
     public void delete(long id) {
-        groupRepository.delete(id);
+        groups.delete(id);
     }
 
     @Override
     public Group getByName(String num) {
-        return groupRepository.findByNumberOfGroup(num);
+        return groups.findByNumberOfGroup(num);
     }
 
     @Override
     public Group edit(Group entity) {
-        return groupRepository.saveAndFlush(entity);
+        return groups.saveAndFlush(entity);
     }
 
     @Override
     public List<Group> getAll() {
-        return groupRepository.findAll();
+        return groups.findAll();
     }
 }

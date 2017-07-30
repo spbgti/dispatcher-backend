@@ -14,30 +14,30 @@ import java.util.List;
 @Service
 public class StudentService implements ServiceInterface<Student> {
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentRepository students;
 
     @Override
     public Student add(Student entity) {
-        return studentRepository.saveAndFlush(entity);
+        return students.saveAndFlush(entity);
     }
 
     @Override
     public void delete(long id) {
-        studentRepository.delete(id);
+        students.delete(id);
     }
 
     @Override
     public Student getByName(String name) {
-        return studentRepository.findByName(name);
+        return students.findByName(name);
     }
 
     @Override
     public Student edit(Student entity) {
-        return studentRepository.saveAndFlush(entity);
+        return students.saveAndFlush(entity);
     }
 
     @Override
     public List<Student> getAll() {
-        return studentRepository.findAll();
+        return students.findAll();
     }
 }
