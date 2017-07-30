@@ -1,6 +1,6 @@
 package com.spbgti.dispatcherapp.entity;
 
-import com.spbgti.dispatcherapp.entity.Enum.Type;
+import com.spbgti.dispatcherapp.entity.Enum.EducationForm;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,14 +16,14 @@ public class Group {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "type")
-    private Type type;
+    @Column(name = "education_form")
+    private EducationForm educationForm;
 
     public Group(){}
 
-    public Group(String name, Type type, int numOfStudents) {
+    public Group(String name, EducationForm educationForm, int numOfStudents) {
         this.name = name;
-        this.type = type;
+        this.educationForm = educationForm;
         this.numOfStudents = numOfStudents;
     }
 
@@ -43,12 +43,12 @@ public class Group {
         this.name = name;
     }
 
-    public Type getType() {
-        return type;
+    public EducationForm getEducationForm() {
+        return educationForm;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setEducationForm(EducationForm educationForm) {
+        this.educationForm = educationForm;
     }
 
     public int getNumOfStudents() {
