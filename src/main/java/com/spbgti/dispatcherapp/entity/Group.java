@@ -13,19 +13,16 @@ public class Group {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "number_of_group")
-    private String numberOfGroup;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "type")
     private Type type;
 
-    @Column(name = "num")
-    private int numOfStudents;
-
     public Group(){}
 
-    public Group(String numberOfGroup, Type type, int numOfStudents) {
-        this.numberOfGroup = numberOfGroup;
+    public Group(String name, Type type, int numOfStudents) {
+        this.name = name;
         this.type = type;
         this.numOfStudents = numOfStudents;
     }
@@ -39,11 +36,11 @@ public class Group {
     }
 
     public String getNumberOfGroup() {
-        return numberOfGroup;
+        return name;
     }
 
-    public void setNumberOfGroup(String numberOfGroup) {
-        this.numberOfGroup = numberOfGroup;
+    public void setNumberOfGroup(String name) {
+        this.name = name;
     }
 
     public Type getType() {
