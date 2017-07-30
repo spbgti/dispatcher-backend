@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Gilbord on 29.07.2017.
  */
 @Service
-public class SeniorService implements ServiceInterface<Candidate> {
+public class CandidateService implements ServiceInterface<Candidate> {
 
     @Autowired
     private SeniorRepository candidates;

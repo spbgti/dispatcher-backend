@@ -1,7 +1,7 @@
 package com.spbgti.dispatcherapp.web;
 
 import com.spbgti.dispatcherapp.entity.Candidate;
-import com.spbgti.dispatcherapp.service.impl.SeniorService;
+import com.spbgti.dispatcherapp.service.impl.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,9 +14,9 @@ import java.util.List;
  * Created by Gilbord on 29.07.2017.
  */
 @RestController
-public class SeniorController {
+public class CandidateController {
     @Autowired
-    SeniorService service;
+    CandidateService service;
 
     @RequestMapping(value = "/candidate",
             method = RequestMethod.POST,
