@@ -28,8 +28,8 @@ public class GroupService implements ServiceInterface<Group> {
     }
 
     @Override
-    public Group getByName(String num) {
-        return groups.findByNumberOfGroup(num);
+    public Group getByName(String name) {
+        return groups.findByName(name);
     }
 
     @Override
