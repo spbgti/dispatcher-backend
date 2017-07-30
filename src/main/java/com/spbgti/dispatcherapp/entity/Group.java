@@ -13,10 +13,10 @@ public class Group {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "education_form")
+    @Column(name = "education_form",  nullable = false)
     private EducationForm educationForm;
 
     public Group(){}
