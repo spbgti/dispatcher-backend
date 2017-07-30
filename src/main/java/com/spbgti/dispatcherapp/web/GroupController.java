@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class GroupController {
     @Autowired
-    GroupService groupService;
+    private GroupService groupService;
 
     @RequestMapping(value = "/group",
             method = RequestMethod.POST,

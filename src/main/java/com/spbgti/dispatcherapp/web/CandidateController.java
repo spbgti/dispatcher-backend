@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class CandidateController {
     @Autowired
-    CandidateService candidateService;
+    private CandidateService candidateService;
 
     @RequestMapping(value = "/candidate",
             method = RequestMethod.POST,
@@ -26,12 +26,12 @@ public class CandidateController {
         return new ResponseEntity<>(candidateService.add(candidate), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/senior/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/candidate/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
         candidateService.delete(id);
     }
 
-    @RequestMapping(value = "/senior/{number}", method = RequestMethod.GET)
+    @RequestMapping(value = "/candidate/{number}", method = RequestMethod.GET)
     public ResponseEntity<Candidate> getByNumber(@PathVariable String num) {
         return new ResponseEntity<>(candidateService.getByName(num), HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class CandidateController {
         return new ResponseEntity<>(candidateService.edit(candidate), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/senior", method = RequestMethod.GET)
+    @RequestMapping(value = "/candidate", method = RequestMethod.GET)
     public ResponseEntity<List<Candidate>> getAll() {
         return new ResponseEntity<>(candidateService.getAll(), HttpStatus.OK);
     }

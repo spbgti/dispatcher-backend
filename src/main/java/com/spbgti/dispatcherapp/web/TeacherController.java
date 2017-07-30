@@ -14,7 +14,7 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    TeacherService teacherService;
+    private TeacherService teacherService;
 
     @RequestMapping(value = "/teacher",
             method = RequestMethod.POST,

@@ -14,7 +14,7 @@ import java.util.List;
 public class ChairController {
 
     @Autowired
-    ChairService chairService;
+    private ChairService chairService;
 
     @RequestMapping(value = "/chair/{name}", method = RequestMethod.POST)
     public ResponseEntity<Chair> addChair(@PathVariable String name){
