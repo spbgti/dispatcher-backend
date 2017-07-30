@@ -18,8 +18,8 @@ public class GroupService implements ServiceInterface<Group> {
     private GroupRepository groups;
 
     @Override
-    public Group add(Group entity) {
-        return groups.saveAndFlush(entity);
+    public Group add(Group g) {
+        return groups.saveAndFlush(g);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class GroupService implements ServiceInterface<Group> {
     }
 
     @Override
-    public Group edit(Group entity) {
-        return groups.saveAndFlush(entity);
+    public Group edit(Group g) {
+        return groups.saveAndFlush(g);
     }
 
     @Override

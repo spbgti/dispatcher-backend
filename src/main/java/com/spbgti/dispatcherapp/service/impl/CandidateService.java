@@ -18,8 +18,8 @@ public class CandidateService implements ServiceInterface<Candidate> {
     private SeniorRepository candidates;
 
     @Override
-    public Candidate add(Candidate entity) {
-        return candidates.saveAndFlush(entity);
+    public Candidate add(Candidate c) {
+        return candidates.saveAndFlush(c);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class CandidateService implements ServiceInterface<Candidate> {
     }
 
     @Override
-    public Candidate edit(Candidate entity) {
-        return candidates.saveAndFlush(entity);
+    public Candidate edit(Candidate c) {
+        return candidates.saveAndFlush(c);
     }
 
     @Override

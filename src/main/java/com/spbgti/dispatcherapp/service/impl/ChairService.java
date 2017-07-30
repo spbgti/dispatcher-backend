@@ -15,8 +15,8 @@ public class ChairService implements ServiceInterface<Chair> {
     private ChairRepository chairs;
 
     @Override
-    public Chair add(Chair entity) {
-        return chairs.saveAndFlush(entity);
+    public Chair add(Chair c) {
+        return chairs.saveAndFlush(c);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class ChairService implements ServiceInterface<Chair> {
     }
 
     @Override
-    public Chair edit(Chair entity) {
-       return chairs.saveAndFlush(entity);
+    public Chair edit(Chair c) {
+       return chairs.saveAndFlush(c);
     }
 
     @Override

@@ -17,8 +17,8 @@ public class StudentService implements ServiceInterface<Student> {
     private StudentRepository students;
 
     @Override
-    public Student add(Student entity) {
-        return students.saveAndFlush(entity);
+    public Student add(Student s) {
+        return students.saveAndFlush(s);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class StudentService implements ServiceInterface<Student> {
     }
 
     @Override
-    public Student edit(Student entity) {
-        return students.saveAndFlush(entity);
+    public Student edit(Student s) {
+        return students.saveAndFlush(s);
     }
 
     @Override
