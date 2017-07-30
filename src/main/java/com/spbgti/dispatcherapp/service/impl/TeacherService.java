@@ -30,8 +30,8 @@ public class TeacherService implements ServiceInterface<Teacher> {
     }
 
     @Override
-    public Teacher edit(Teacher chair) {
-        return teacherRepository.saveAndFlush(chair);
+    public Teacher edit(Teacher entity) {
+        return teacherRepository.saveAndFlush(entity);
     }
 
     @Override
