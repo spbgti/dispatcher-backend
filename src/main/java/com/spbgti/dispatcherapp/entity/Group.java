@@ -34,11 +34,11 @@ public class Group {
         this.id = id;
     }
 
-    public String getNumberOfGroup() {
+    public String getName() {
         return name;
     }
 
-    public void setNumberOfGroup(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
