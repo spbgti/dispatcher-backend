@@ -21,10 +21,9 @@ public class Group {
 
     public Group(){}
 
-    public Group(String name, EducationForm educationForm, int numOfStudents) {
+    public Group(String name, EducationForm educationForm) {
         this.name = name;
         this.educationForm = educationForm;
-        this.numOfStudents = numOfStudents;
     }
 
     public long getId() {
@@ -49,13 +48,5 @@ public class Group {
 
     public void setEducationForm(EducationForm educationForm) {
         this.educationForm = educationForm;
-    }
-
-    public int getNumOfStudents() {
-        return numOfStudents;
-    }
-
-    public void setNumOfStudents(int numOfStudents) {
-        this.numOfStudents = numOfStudents;
     }
 }
