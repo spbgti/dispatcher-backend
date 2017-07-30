@@ -16,24 +16,24 @@ import java.util.List;
 @RestController
 public class GroupController {
     @Autowired
-    GroupService service;
+    GroupService groupService;
 
     @RequestMapping(value = "/group",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Group> addGroup(@RequestBody Group group){
-        return new ResponseEntity<>(service.add(group), HttpStatus.OK);
+        return new ResponseEntity<>(groupService.add(group), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/group/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
-        service.delete(id);
+        groupService.delete(id);
     }
 
     @RequestMapping(value = "/group/{number}", method = RequestMethod.GET)
     public ResponseEntity<Group> getByNumber(@PathVariable String num) {
-        return new ResponseEntity<>(service.getByName(num), HttpStatus.OK);
+        return new ResponseEntity<>(groupService.getByName(num), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/group",
@@ -41,11 +41,11 @@ public class GroupController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Group> edit(@RequestBody Group group) {
-        return new ResponseEntity<>(service.edit(group), HttpStatus.OK);
+        return new ResponseEntity<>(groupService.edit(group), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/group", method = RequestMethod.GET)
     public ResponseEntity<List<Group>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(groupService.getAll(), HttpStatus.OK);
     }
 }

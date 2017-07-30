@@ -16,24 +16,24 @@ import java.util.List;
 @RestController
 public class CandidateController {
     @Autowired
-    CandidateService service;
+    CandidateService candidateService;
 
     @RequestMapping(value = "/candidate",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Candidate> addSenior(@RequestBody Candidate candidate){
-        return new ResponseEntity<>(service.add(candidate), HttpStatus.OK);
+        return new ResponseEntity<>(candidateService.add(candidate), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/senior/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
-        service.delete(id);
+        candidateService.delete(id);
     }
 
     @RequestMapping(value = "/senior/{number}", method = RequestMethod.GET)
     public ResponseEntity<Candidate> getByNumber(@PathVariable String num) {
-        return new ResponseEntity<>(service.getByName(num), HttpStatus.OK);
+        return new ResponseEntity<>(candidateService.getByName(num), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/candidate",
@@ -41,11 +41,11 @@ public class CandidateController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Candidate> edit(@RequestBody Candidate candidate) {
-        return new ResponseEntity<>(service.edit(candidate), HttpStatus.OK);
+        return new ResponseEntity<>(candidateService.edit(candidate), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/senior", method = RequestMethod.GET)
     public ResponseEntity<List<Candidate>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(candidateService.getAll(), HttpStatus.OK);
     }
 }

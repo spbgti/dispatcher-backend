@@ -16,24 +16,24 @@ import java.util.List;
 @RestController
 public class StudentController {
     @Autowired
-    StudentService service;
+    StudentService studentService;
 
     @RequestMapping(value = "/student",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> addStudent(@RequestBody Student student){
-        return new ResponseEntity<>(service.add(student), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.add(student), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/student/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
-        service.delete(id);
+        studentService.delete(id);
     }
 
     @RequestMapping(value = "/student/{number}", method = RequestMethod.GET)
     public ResponseEntity<Student> getByNumber(@PathVariable String num) {
-        return new ResponseEntity<>(service.getByName(num), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getByName(num), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/student",
@@ -41,11 +41,11 @@ public class StudentController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> edit(@RequestBody Student student) {
-        return new ResponseEntity<>(service.edit(student), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.edit(student), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public ResponseEntity<List<Student>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getAll(), HttpStatus.OK);
     }
 }
