@@ -12,10 +12,10 @@ public class Student {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
     @Column(name = "patronymic")
