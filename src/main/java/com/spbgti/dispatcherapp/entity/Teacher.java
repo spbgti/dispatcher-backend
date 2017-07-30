@@ -11,13 +11,16 @@ public class Teacher {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
-    @ManyToOne//(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Column(name = "patronymic")
+    private String patronymic;
+
+    @ManyToOne
     @JoinColumn(name = "chair_id", nullable = false)
     private Chair chair;
 
@@ -25,9 +28,10 @@ public class Teacher {
 
     }
 
-    public Teacher(String name, String surname, Chair chair) {
+    public Teacher(String name, String surname, String patronymic, Chair chair) {
         this.name = name;
         this.surname = surname;
+        this.patronymic = patronymic;
         this.chair = chair;
     }
 
@@ -61,6 +65,14 @@ public class Teacher {
 
     public void setChair(Chair chair) {
         this.chair = chair;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     @Override
