@@ -12,7 +12,7 @@ public class Chair {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Chair(){}
