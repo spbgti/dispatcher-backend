@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@DiscriminatorValue(value="person")
+@DiscriminatorValue(value="candidate")
 public class Candidate extends Person{
 
     @ManyToOne

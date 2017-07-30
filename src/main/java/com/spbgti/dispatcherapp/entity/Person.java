@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON")
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn( name="educational_type")
 public class Person {
     @Id
