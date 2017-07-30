@@ -12,30 +12,30 @@ import java.util.List;
 public class TeacherService implements ServiceInterface<Teacher> {
 
     @Autowired
-    private TeacherRepository teacherRepository;
+    private TeacherRepository teachers;
 
     @Override
-    public Teacher add(Teacher entity) {
-        return teacherRepository.saveAndFlush(entity);
+    public Teacher add(Teacher t) {
+        return teachers.saveAndFlush(t);
     }
 
     @Override
     public void delete(long id) {
-        teacherRepository.delete(id);
+        teachers.delete(id);
     }
 
     @Override
     public Teacher getByName(String name) {
-        return teacherRepository.findByName(name);
+        return teachers.findByName(name);
     }
 
     @Override
-    public Teacher edit(Teacher chair) {
-        return teacherRepository.saveAndFlush(chair);
+    public Teacher edit(Teacher t) {
+        return teachers.saveAndFlush(t);
     }
 
     @Override
     public List<Teacher> getAll() {
-        return teacherRepository.findAll();
+        return teachers.findAll();
     }
 }

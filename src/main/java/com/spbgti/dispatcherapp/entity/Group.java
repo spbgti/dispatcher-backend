@@ -1,12 +1,13 @@
 package com.spbgti.dispatcherapp.entity;
 
+import com.spbgti.dispatcherapp.entity.Enum.EducationForm;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CHAIR")
-public class Chair {
+@Table(name = "STUDENT_GROUP")
+public class Group {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -15,10 +16,14 @@ public class Chair {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Chair(){}
+    @Column(name = "education_form",  nullable = false)
+    private EducationForm educationForm;
 
-    public Chair(String name) {
+    public Group(){}
+
+    public Group(String name, EducationForm educationForm) {
         this.name = name;
+        this.educationForm = educationForm;
     }
 
     public long getId() {
@@ -37,11 +42,11 @@ public class Chair {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Chair{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public EducationForm getEducationForm() {
+        return educationForm;
+    }
+
+    public void setEducationForm(EducationForm educationForm) {
+        this.educationForm = educationForm;
     }
 }
