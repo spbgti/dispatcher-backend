@@ -30,8 +30,8 @@ public class ChairService implements ServiceInterface<Chair> {
     }
 
     @Override
-    public Chair edit(Chair chair) {
-       return chairRepository.saveAndFlush(chair);
+    public Chair edit(Chair entity) {
+       return chairRepository.saveAndFlush(entity);
     }
 
     @Override

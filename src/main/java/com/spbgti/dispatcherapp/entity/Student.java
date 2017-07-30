@@ -1,11 +1,12 @@
 package com.spbgti.dispatcherapp.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TEACHER")
-public class Teacher {
+@Table(name = "STUDENT")
+public class Student {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -17,18 +18,21 @@ public class Teacher {
     @Column(name = "surname")
     private String surname;
 
-    @ManyToOne//(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "chair_id", nullable = false)
-    private Chair chair;
+    @Column(name = "patronymic")
+    private String patronymic;
 
-    public Teacher(){
+    @ManyToOne
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
 
+    public Student() {
     }
 
-    public Teacher(String name, String surname, Chair chair) {
+    public Student(String name, String surname, String patronymic, Group group) {
         this.name = name;
         this.surname = surname;
-        this.chair = chair;
+        this.patronymic = patronymic;
+        this.group = group;
     }
 
     public long getId() {
@@ -55,21 +59,19 @@ public class Teacher {
         this.surname = surname;
     }
 
-    public Chair getChair() {
-        return chair;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setChair(Chair chair) {
-        this.chair = chair;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
-    @Override
-    public String toString() {
-        return "Teacher{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", chair=" + chair +
-                '}';
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
