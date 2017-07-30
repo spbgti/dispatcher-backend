@@ -7,16 +7,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SENIOR")
-public class Senior {
+public class Candidate {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
     @Column(name = "patronymic")
@@ -26,10 +26,10 @@ public class Senior {
     @JoinColumn(name = "speciality_id", nullable = false)
     private Speciality speciality;
 
-    public Senior() {
+    public Candidate() {
     }
 
-    public Senior(String name, String surname, String patronymic) {
+    public Candidate(String name, String surname, String patronymic) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;

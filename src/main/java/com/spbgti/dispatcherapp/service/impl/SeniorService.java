@@ -1,6 +1,6 @@
 package com.spbgti.dispatcherapp.service.impl;
 
-import com.spbgti.dispatcherapp.entity.Senior;
+import com.spbgti.dispatcherapp.entity.Candidate;
 import com.spbgti.dispatcherapp.repository.SeniorRepository;
 import com.spbgti.dispatcherapp.service.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,13 @@ import java.util.List;
  * Created by Gilbord on 29.07.2017.
  */
 @Service
-public class SeniorService implements ServiceInterface<Senior> {
+public class SeniorService implements ServiceInterface<Candidate> {
 
     @Autowired
     private SeniorRepository seniorRepository;
 
     @Override
-    public Senior add(Senior entity) {
+    public Candidate add(Candidate entity) {
         return seniorRepository.saveAndFlush(entity);
     }
 
@@ -28,17 +28,17 @@ public class SeniorService implements ServiceInterface<Senior> {
     }
 
     @Override
-    public Senior getByName(String name) {
+    public Candidate getByName(String name) {
         return seniorRepository.findByName(name);
     }
 
     @Override
-    public Senior edit(Senior entity) {
+    public Candidate edit(Candidate entity) {
         return seniorRepository.saveAndFlush(entity);
     }
 
     @Override
-    public List<Senior> getAll() {
+    public List<Candidate> getAll() {
         return seniorRepository.findAll();
     }
 }

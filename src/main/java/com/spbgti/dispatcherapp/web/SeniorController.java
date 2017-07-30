@@ -1,6 +1,6 @@
 package com.spbgti.dispatcherapp.web;
 
-import com.spbgti.dispatcherapp.entity.Senior;
+import com.spbgti.dispatcherapp.entity.Candidate;
 import com.spbgti.dispatcherapp.service.impl.SeniorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +18,12 @@ public class SeniorController {
     @Autowired
     SeniorService service;
 
-    @RequestMapping(value = "/senior",
+    @RequestMapping(value = "/candidate",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Senior> addSenior(@RequestBody Senior senior){
-        return new ResponseEntity<>(service.add(senior), HttpStatus.OK);
+    public ResponseEntity<Candidate> addSenior(@RequestBody Candidate candidate){
+        return new ResponseEntity<>(service.add(candidate), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/senior/{id}", method = RequestMethod.DELETE)
@@ -32,20 +32,20 @@ public class SeniorController {
     }
 
     @RequestMapping(value = "/senior/{number}", method = RequestMethod.GET)
-    public ResponseEntity<Senior> getByNumber(@PathVariable String num) {
+    public ResponseEntity<Candidate> getByNumber(@PathVariable String num) {
         return new ResponseEntity<>(service.getByName(num), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/senior",
+    @RequestMapping(value = "/candidate",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Senior> edit(@RequestBody Senior senior) {
-        return new ResponseEntity<>(service.edit(senior), HttpStatus.OK);
+    public ResponseEntity<Candidate> edit(@RequestBody Candidate candidate) {
+        return new ResponseEntity<>(service.edit(candidate), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/senior", method = RequestMethod.GET)
-    public ResponseEntity<List<Senior>> getAll() {
+    public ResponseEntity<List<Candidate>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 }
