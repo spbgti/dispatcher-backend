@@ -1,7 +1,7 @@
 package com.spbgti.dispatcherapp.service.impl;
 
 import com.spbgti.dispatcherapp.entity.Candidate;
-import com.spbgti.dispatcherapp.repository.SeniorRepository;
+import com.spbgti.dispatcherapp.repository.CandidateRepository;
 import com.spbgti.dispatcherapp.service.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 public class CandidateService implements ServiceInterface<Candidate> {
 
     @Autowired
-    private SeniorRepository candidates;
+    private CandidateRepository candidates;
 
     @Override
     public Candidate add(Candidate c) {
