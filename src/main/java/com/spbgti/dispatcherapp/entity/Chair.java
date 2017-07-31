@@ -15,10 +15,15 @@ public class Chair {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "faculty_id", nullable = false)
+    private Faculty faculty;
+
     public Chair(){}
 
-    public Chair(String name) {
+    public Chair(String name, Faculty faculty) {
         this.name = name;
+        this.faculty = faculty;
     }
 
     public long getId() {
@@ -37,11 +42,20 @@ public class Chair {
         this.name = name;
     }
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
     @Override
     public String toString() {
         return "Chair{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+
                 '}';
     }
 }
