@@ -16,9 +16,11 @@ public class ChairController {
     @Autowired
     private ChairService chairService;
 
-    @RequestMapping(value = "/chair/{name}", method = RequestMethod.POST)
-    public ResponseEntity<Chair> addChair(@PathVariable String name){
-        return new ResponseEntity<>(chairService.add(new Chair(name)), HttpStatus.OK);
+    @RequestMapping(value = "/chair", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Chair> addChair(@RequestBody Chair chair){
+        return new ResponseEntity<>(chairService.add(chair), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/chair/{id}", method = RequestMethod.DELETE)
