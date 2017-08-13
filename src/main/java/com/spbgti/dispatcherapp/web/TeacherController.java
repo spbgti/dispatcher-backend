@@ -11,38 +11,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/teacher")
 public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
 
-    @RequestMapping(value = "/teacher",
-            method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Teacher> addTeacher(@RequestBody Teacher teacher) {
         return new ResponseEntity<>(teacherService.add(teacher), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/teacher/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
         teacherService.delete(id);
     }
 
-    @RequestMapping(value = "/teacher/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ResponseEntity<Teacher> getByName(@PathVariable String name) {
         return new ResponseEntity<>(teacherService.getByName(name), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/teacher",
-            method = RequestMethod.PUT,
+    @RequestMapping( method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Teacher> edit(@RequestBody Teacher teacher) {
         return new ResponseEntity<>(teacherService.edit(teacher), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/teacher", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Teacher>> getAll() {
         return new ResponseEntity<>(teacherService.getAll(), HttpStatus.OK);
     }

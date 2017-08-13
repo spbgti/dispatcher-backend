@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/chair")
 public class ChairController {
 
     @Autowired
     private ChairService chairService;
 
-    @RequestMapping(value = "/chair", method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Chair> addChair(@RequestBody Chair chair){
         return new ResponseEntity<>(chairService.add(chair), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/chair/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
         chairService.delete(id);
     }
 
-    @RequestMapping(value = "/chair/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ResponseEntity<Chair> getByName(@PathVariable String name) {
         return new ResponseEntity<>(chairService.getByName(name), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/chair",
-            method = RequestMethod.PUT,
+    @RequestMapping(method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Chair> edit(@RequestBody Chair chair) {
         return new ResponseEntity<>(chairService.edit(chair), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/chair", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Chair>> getAll() {
         return new ResponseEntity<>(chairService.getAll(), HttpStatus.OK);
     }

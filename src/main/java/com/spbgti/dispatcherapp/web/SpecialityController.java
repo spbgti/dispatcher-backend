@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/speciality")
 public class SpecialityController {
 
     @Autowired
     private SpecialityService specialityService;
 
-    @RequestMapping(value = "/speciality", method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Speciality> addSpeciality(@RequestBody Speciality speciality){
         return new ResponseEntity<>(specialityService.add(speciality), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/speciality/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable long id) {
         specialityService.delete(id);
     }
 
-    @RequestMapping(value = "/speciality/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ResponseEntity<Speciality> getByName(@PathVariable String name) {
         return new ResponseEntity<>(specialityService.getByName(name), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/speciality",
-            method = RequestMethod.PUT,
+    @RequestMapping(method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Speciality> edit(@RequestBody Speciality speciality) {
         return new ResponseEntity<>(specialityService.edit(speciality), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/speciality", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Speciality>> getAll() {
         return new ResponseEntity<>(specialityService.getAll(), HttpStatus.OK);
     }
