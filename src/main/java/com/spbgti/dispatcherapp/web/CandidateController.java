@@ -22,7 +22,7 @@ public class CandidateController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Candidate> addSenior(@RequestBody Candidate candidate){
+    public ResponseEntity<Candidate> addCandidate(@RequestBody Candidate candidate){
         return new ResponseEntity<>(candidateService.add(candidate), HttpStatus.OK);
     }
 
