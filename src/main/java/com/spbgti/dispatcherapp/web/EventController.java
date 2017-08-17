@@ -20,17 +20,19 @@ public class EventController{
 
     @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addEvent(@RequestBody CreateCommand command){
-        try {
-            new LinkedHashMapParser().parse(command);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("Class not found", HttpStatus.OK);
-        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("Something came wrong" + e.getLocalizedMessage(), HttpStatus.OK);
+    public ResponseEntity<?> addEvent(@RequestBody CreateCommand[] commands) {
+        for (CreateCommand command : commands) {
+            try {
+                new LinkedHashMapParser().parse(command);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                return new ResponseEntity<>("Class not found", HttpStatus.OK);
+            } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+                e.printStackTrace();
+                return new ResponseEntity<>("Something came wrong" + e.getLocalizedMessage(), HttpStatus.OK);
+            }
         }
-        return new ResponseEntity(command.getEntity(), HttpStatus.OK);
+        return new ResponseEntity<>(commands, HttpStatus.OK);
     }
 
 }
