@@ -1,18 +1,16 @@
 package com.spbgti.dispatcherapp.web;
 
-import com.spbgti.dispatcherapp.entity.Event.CreateCommand;
-import com.spbgti.dispatcherapp.entity.Event.LinkedHashMapParser;
+import com.spbgti.dispatcherapp.Entity.Event.CreateCommand;
+import com.spbgti.dispatcherapp.Entity.Event.LinkedHashMapParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
 
 @RestController
 @RequestMapping(value = "/event")

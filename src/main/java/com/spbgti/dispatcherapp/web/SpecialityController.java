@@ -1,7 +1,7 @@
 package com.spbgti.dispatcherapp.web;
 
-import com.spbgti.dispatcherapp.entity.Speciality;
-import com.spbgti.dispatcherapp.service.impl.SpecialityService;
+import com.spbgti.dispatcherapp.Entity.Speciality;
+import com.spbgti.dispatcherapp.Service.impl.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

@@ -1,7 +1,7 @@
 package com.spbgti.dispatcherapp.web;
 
-import com.spbgti.dispatcherapp.entity.Chair;
-import com.spbgti.dispatcherapp.service.impl.ChairService;
+import com.spbgti.dispatcherapp.Entity.Chair;
+import com.spbgti.dispatcherapp.Service.impl.ChairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
