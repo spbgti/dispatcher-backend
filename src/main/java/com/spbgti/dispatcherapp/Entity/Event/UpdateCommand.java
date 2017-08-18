@@ -1,5 +1,8 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import javax.persistence.EntityManager;
+import java.lang.reflect.InvocationTargetException;
+
 public class UpdateCommand<T> implements Command {
     private String Type;
     private int entityId;
@@ -19,8 +22,12 @@ public class UpdateCommand<T> implements Command {
     }
 
     @Override
-    public String apply() {
-        return null;
+    public Object apply(EntityManager entityManager) throws ClassNotFoundException,
+            NoSuchMethodException,
+            InvocationTargetException,
+            InstantiationException,
+            IllegalAccessException {
+        return "1";
     }
 
     public String getType() {

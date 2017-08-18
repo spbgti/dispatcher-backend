@@ -1,5 +1,8 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import javax.persistence.EntityManager;
+import java.util.List;
+
 public class Event {
     private User user;
     private SessionInfo session;
@@ -13,8 +16,8 @@ public class Event {
         this.session = session;
     }
 
-    public String apply(){
-        return "1";
+    public List<Object> apply(EntityManager entityManager){
+        return null;
     }
 
     public User getUser() {

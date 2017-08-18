@@ -1,5 +1,8 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import javax.persistence.EntityManager;
+import java.lang.reflect.InvocationTargetException;
+
 public class DeleteCommand implements Command {
     private String type;
     private int entityId;
@@ -13,8 +16,12 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public String apply() {
-        return null;
+    public Object apply(EntityManager entityManager) throws ClassNotFoundException,
+            NoSuchMethodException,
+            InvocationTargetException,
+            InstantiationException,
+            IllegalAccessException {
+        return "1";
     }
 
     public String getType() {
