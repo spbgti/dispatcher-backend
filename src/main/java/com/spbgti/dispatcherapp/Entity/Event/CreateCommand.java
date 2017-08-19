@@ -1,13 +1,16 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
 public class CreateCommand implements Command {
     private String type;
-    private LinkedHashMap entity;
+    private Object entity;
 
     public CreateCommand() {
     }
@@ -25,11 +28,11 @@ public class CreateCommand implements Command {
         this.type = type;
     }
 
-    public LinkedHashMap getEntity() {
+    public Object getEntity() {
         return entity;
     }
 
-    public void setEntity(LinkedHashMap entity) {
+    public void setEntity(Object entity) {
         this.entity = entity;
     }
 
@@ -39,8 +42,9 @@ public class CreateCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        Object object = new LinkedHashMapParser().parse(this);
+        Object object = new LinkedHashMapParser().parse((LinkedHashMap)this.entity, this.type);
         entityManager.persist(object);
-        return object;
+
+        return "1";
     }
 }

@@ -1,41 +1,53 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
-import javax.persistence.EntityManager;
-import java.lang.reflect.InvocationTargetException;
+import org.hibernate.SQLQuery;
 
-public class UpdateCommand<T> implements Command {
-    private String Type;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.lang.reflect.InvocationTargetException;
+import java.util.LinkedHashMap;
+
+public class UpdateCommand implements Command {
+    private String type;
     private int entityId;
     private String field;
-    private T old;
-    private T newT;
+    private Object oldEntity;
+    private Object newEntity;
 
     public UpdateCommand() {
     }
 
-    public UpdateCommand(String type, int entityId, String field, T old, T newT) {
-        Type = type;
+    public UpdateCommand(String type, int entityId, String field, Object oldEntity, Object newEntity) {
+        this.type = type;
         this.entityId = entityId;
         this.field = field;
-        this.old = old;
-        this.newT = newT;
+        this.oldEntity = oldEntity;
+        this.newEntity = newEntity;
     }
 
     @Override
-    public Object apply(EntityManager entityManager) throws ClassNotFoundException,
+    public Object apply(EntityManager entityManager) throws
+            ClassNotFoundException,
             NoSuchMethodException,
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        return "1";
+            String sqlQuery = "UPDATE " + new LinkedHashMapParser().firstCharToUpperCase(this.type) + " SET " + this.field + " " + " = :fieldValue " +
+                    "WHERE id = :idValue";
+        entityManager
+                .createQuery(sqlQuery)
+                .setParameter("fieldValue", new LinkedHashMapParser().getField((LinkedHashMap)this.newEntity, this.type, this.field))
+                .setParameter("idValue", (long)this.entityId)
+                .executeUpdate();
+        return "2";
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
     }
 
     public int getEntityId() {
@@ -54,19 +66,19 @@ public class UpdateCommand<T> implements Command {
         this.field = field;
     }
 
-    public T getOld() {
-        return old;
+    public Object getOldEntity() {
+        return oldEntity;
     }
 
-    public void setOld(T old) {
-        this.old = old;
+    public void setOldEntity(Object oldEntity) {
+        this.oldEntity = oldEntity;
     }
 
-    public T getNewT() {
-        return newT;
+    public Object getNewEntity() {
+        return newEntity;
     }
 
-    public void setNewT(T newT) {
-        this.newT = newT;
+    public void setNewEntity(Object newEntity) {
+        this.newEntity = newEntity;
     }
 }

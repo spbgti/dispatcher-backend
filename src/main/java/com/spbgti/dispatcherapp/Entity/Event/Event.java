@@ -1,6 +1,7 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
 import javax.persistence.EntityManager;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class Event {
@@ -16,7 +17,7 @@ public class Event {
         this.session = session;
     }
 
-    public List<Object> apply(EntityManager entityManager){
+    public List<Object> apply(EntityManager entityManager) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         return null;
     }
 

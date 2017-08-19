@@ -1,13 +1,22 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import javassist.tools.rmi.ObjectNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
 public class ModifyEvent extends Event {
     private List<Command> commands;
+
 
     public ModifyEvent() {
     }
@@ -18,18 +27,10 @@ public class ModifyEvent extends Event {
     }
 
     @Override
-    public List<Object> apply(EntityManager entityManager){
+    public List<Object> apply(EntityManager entityManager) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         List<Object> list = new ArrayList<>();
         for(Command command : commands){
-            try {
-               list.add(command.apply(entityManager));
-            } catch (ClassNotFoundException
-                    | NoSuchMethodException
-                    | InstantiationException
-                    | InvocationTargetException
-                    | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+                list.add(command.apply(entityManager));
         }
         return list;
     }
