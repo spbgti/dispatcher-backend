@@ -1,9 +1,6 @@
 package com.spbgti.dispatcherapp.Service;
 
-import com.spbgti.dispatcherapp.Entity.Event.Command;
-import com.spbgti.dispatcherapp.Entity.Event.ModifyEvent;
-import com.spbgti.dispatcherapp.Entity.Event.SessionInfo;
-import com.spbgti.dispatcherapp.Entity.Event.User;
+import com.spbgti.dispatcherapp.Entity.Event.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,5 +24,11 @@ public class EventService {
         ModifyEvent modifyEvent = new ModifyEvent(new User(), new SessionInfo(), list);
         result = modifyEvent.apply(entityManager);
         return result;
+    }
+
+    public Object addReadEvent(Query[] queries) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        List<Query> list = Arrays.asList(queries);
+        ReadEvent readEvent = new ReadEvent(new User(), new SessionInfo(), list);
+        return readEvent.apply(entityManager);
     }
 }
