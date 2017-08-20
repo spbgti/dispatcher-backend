@@ -21,9 +21,11 @@ public class DeleteCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        entityManager.createQuery("DELETE " + new LinkedHashMapParser().firstCharToUpperCase(type) +
-                " WHERE id = :idValue").setParameter("idValue", (long)this.entityId).executeUpdate();
-        return "3";
+        String sqlQuery = "DELETE "
+                + new LinkedHashMapParser().firstCharToUpperCase(type)
+                + " WHERE id = :idValue";
+        entityManager.createQuery(sqlQuery).setParameter("idValue", (long)this.entityId).executeUpdate();
+        return new Object();
     }
 
     public String getType() {

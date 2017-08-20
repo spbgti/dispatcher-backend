@@ -1,9 +1,6 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
-import org.hibernate.SQLQuery;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
@@ -32,14 +29,18 @@ public class UpdateCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-            String sqlQuery = "UPDATE " + new LinkedHashMapParser().firstCharToUpperCase(this.type) + " SET " + this.field + " " + " = :fieldValue " +
-                    "WHERE id = :idValue";
+        String sqlQuery = "UPDATE " + new LinkedHashMapParser().firstCharToUpperCase(this.type)
+                + " SET " + this.field
+                + " " + " = :fieldValue "
+                + "WHERE id = :idValue";
+        Object newObject = new LinkedHashMapParser().parse((LinkedHashMap)this.newEntity, this.type);
+        Object field = new LinkedHashMapParser().getField((LinkedHashMap) this.newEntity, this.type, this.field);
         entityManager
                 .createQuery(sqlQuery)
-                .setParameter("fieldValue", new LinkedHashMapParser().getField((LinkedHashMap)this.newEntity, this.type, this.field))
-                .setParameter("idValue", (long)this.entityId)
+                .setParameter("fieldValue", field)
+                .setParameter("idValue", (long) this.entityId)
                 .executeUpdate();
-        return "2";
+        return newObject;
     }
 
     public String getType() {
