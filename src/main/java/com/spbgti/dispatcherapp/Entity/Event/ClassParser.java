@@ -5,8 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
 
-public class LinkedHashMapParser {
-    private final String CLASS_NAME = "com.spbgti.dispatcherapp.Entity.";
+public class ClassParser {
+    private final static String CLASS_NAME = "com.spbgti.dispatcherapp.Entity.";
 
     public Object parse(LinkedHashMap map, String type) throws ClassNotFoundException,
             IllegalAccessException,
@@ -22,6 +22,10 @@ public class LinkedHashMapParser {
 
     public String firstCharToUpperCase(String target) {
         return Character.toUpperCase(target.charAt(0)) + target.substring(1);
+    }
+
+    public Class getClassFor(String type) throws ClassNotFoundException {
+        return Class.forName(CLASS_NAME + firstCharToUpperCase(type));
     }
 
     public Object getField(LinkedHashMap map, String type, String fieldName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
