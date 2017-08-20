@@ -29,13 +29,13 @@ public class UpdateCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        String sqlQuery = "UPDATE " + new LinkedHashMapParser().firstCharToUpperCase(this.type)
+        String sqlQuery = "UPDATE " + new ClassParser().firstCharToUpperCase(this.type)
                 + " SET " + this.field
                 + " " + " = :fieldValue "
                 + "WHERE id = :idValue";
-        Object newObject = new LinkedHashMapParser().parse((LinkedHashMap)this.newEntity, this.type);
+        Object newObject = new ClassParser().parse((LinkedHashMap)this.newEntity, this.type);
         newObject.getClass().getMethod("setId", long.class).invoke(newObject, this.entityId);
-        Object field = new LinkedHashMapParser().getField((LinkedHashMap) this.newEntity, this.type, this.field);
+        Object field = new ClassParser().getField((LinkedHashMap) this.newEntity, this.type, this.field);
         entityManager
                 .createQuery(sqlQuery)
                 .setParameter("fieldValue", field)

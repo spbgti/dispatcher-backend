@@ -23,7 +23,7 @@ public class DeleteCommand implements Command {
             InstantiationException,
             IllegalAccessException {
         String sqlQuery = "DELETE "
-                + new LinkedHashMapParser().firstCharToUpperCase(type)
+                + new ClassParser().firstCharToUpperCase(type)
                 + " WHERE id = :idValue";
         entityManager.createQuery(sqlQuery).setParameter("idValue", (long)this.entityId).executeUpdate();
         return new ArrayList<>();

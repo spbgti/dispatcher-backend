@@ -2,6 +2,7 @@ package com.spbgti.dispatcherapp.web;
 
 import com.spbgti.dispatcherapp.Entity.Event.CreateCommand;
 import com.spbgti.dispatcherapp.Entity.Event.DeleteCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Query;
 import com.spbgti.dispatcherapp.Entity.Event.UpdateCommand;
 import com.spbgti.dispatcherapp.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/event")
@@ -54,5 +56,18 @@ public class EventController {
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
+
+    @RequestMapping(method = RequestMethod.PATCH,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addReadEvent(@RequestBody Query[] queries) {
+        try {
+            return new ResponseEntity<>(eventService.addReadEvent(queries), HttpStatus.OK);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
+        }
+    }
+
+
 
 }
