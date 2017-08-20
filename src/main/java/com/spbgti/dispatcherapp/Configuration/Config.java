@@ -24,11 +24,9 @@ public class Config{
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan("com.spbgti.dispatcherapp.Entity");
-
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
-
         return em;
     }
 
@@ -37,8 +35,8 @@ public class Config{
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/testdb");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "root" );
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
         return dataSource;
     }
 
@@ -46,7 +44,6 @@ public class Config{
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
-
         return transactionManager;
     }
 
