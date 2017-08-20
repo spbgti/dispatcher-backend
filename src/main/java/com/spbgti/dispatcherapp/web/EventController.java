@@ -2,7 +2,6 @@ package com.spbgti.dispatcherapp.web;
 
 import com.spbgti.dispatcherapp.Entity.Event.CreateCommand;
 import com.spbgti.dispatcherapp.Entity.Event.DeleteCommand;
-import com.spbgti.dispatcherapp.Entity.Event.LinkedHashMapParser;
 import com.spbgti.dispatcherapp.Entity.Event.UpdateCommand;
 import com.spbgti.dispatcherapp.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +25,34 @@ public class EventController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createModifyEvent(@RequestBody CreateCommand[] commands) {
-        return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
+        }
     }
 
     @RequestMapping(method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateModifyEvent(@RequestBody UpdateCommand[] commands) {
-        return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
+        }
     }
 
     @RequestMapping(method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteModifyEvent(@RequestBody DeleteCommand[] commands) {
-        return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
+        }
     }
 
 }
