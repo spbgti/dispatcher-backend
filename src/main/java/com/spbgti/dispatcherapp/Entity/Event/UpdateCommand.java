@@ -34,6 +34,7 @@ public class UpdateCommand implements Command {
                 + " " + " = :fieldValue "
                 + "WHERE id = :idValue";
         Object newObject = new LinkedHashMapParser().parse((LinkedHashMap)this.newEntity, this.type);
+        newObject.getClass().getMethod("setId", long.class).invoke(newObject, this.entityId);
         Object field = new LinkedHashMapParser().getField((LinkedHashMap) this.newEntity, this.type, this.field);
         entityManager
                 .createQuery(sqlQuery)

@@ -2,6 +2,7 @@ package com.spbgti.dispatcherapp.Entity.Event;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 public class DeleteCommand implements Command {
     private String type;
@@ -25,7 +26,7 @@ public class DeleteCommand implements Command {
                 + new LinkedHashMapParser().firstCharToUpperCase(type)
                 + " WHERE id = :idValue";
         entityManager.createQuery(sqlQuery).setParameter("idValue", (long)this.entityId).executeUpdate();
-        return new Object();
+        return new ArrayList<>();
     }
 
     public String getType() {
