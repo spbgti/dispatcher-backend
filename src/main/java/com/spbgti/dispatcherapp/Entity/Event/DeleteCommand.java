@@ -2,10 +2,10 @@ package com.spbgti.dispatcherapp.Entity.Event;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 
 public class DeleteCommand implements Command {
     private String type;
+
     private int entityId;
 
     public DeleteCommand() {
@@ -22,11 +22,12 @@ public class DeleteCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
+        new ClassParser().getClassFor(this.type);
         String sqlQuery = "DELETE "
                 + new ClassParser().firstCharToUpperCase(type)
                 + " WHERE id = :idValue";
         entityManager.createQuery(sqlQuery).setParameter("idValue", (long)this.entityId).executeUpdate();
-        return new ArrayList<>();
+        return new Object();
     }
 
     public String getType() {
