@@ -1,8 +1,8 @@
 group 'spbgti'
 version '1.0'
 
-buildscript{
-    repositories{
+buildscript {
+    repositories {
         mavenCentral()
     }
     dependencies {
@@ -22,7 +22,12 @@ sourceCompatibility = 1.8
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+    maven {
+        url "https://repository.jboss.org/nexus/content/repositories/releases"
+    }
+    maven {
+        url "https://repo.spring.io/libs-release"
+    }
 }
 
 jar {
@@ -33,7 +38,8 @@ jar {
 
 
 dependencies {
-    runtime "mysql:mysql-connector-java:5.1.37"
+    runtime("mysql:mysql-connector-java:5.1.37")
+    compile("org.springframework.data:spring-data-mongodb:1.10.6.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-test")
     compile("com.h2database:h2")
