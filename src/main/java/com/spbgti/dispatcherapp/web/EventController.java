@@ -5,17 +5,15 @@ import com.spbgti.dispatcherapp.Entity.Event.DeleteCommand;
 import com.spbgti.dispatcherapp.Entity.Event.Query;
 import com.spbgti.dispatcherapp.Entity.Event.UpdateCommand;
 import com.spbgti.dispatcherapp.Service.EventService;
+import org.hibernate.hql.internal.ast.QuerySyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/event")
@@ -29,8 +27,9 @@ public class EventController {
     public ResponseEntity<?> createModifyEvent(@RequestBody CreateCommand[] commands) {
         try {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | QuerySyntaxException e) {
             e.printStackTrace();
+            eventService.addFailedModifyEvent(commands);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -40,8 +39,9 @@ public class EventController {
     public ResponseEntity<?> updateModifyEvent(@RequestBody UpdateCommand[] commands) {
         try {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException | QuerySyntaxException e) {
             e.printStackTrace();
+            eventService.addFailedModifyEvent(commands);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -51,8 +51,9 @@ public class EventController {
     public ResponseEntity<?> deleteModifyEvent(@RequestBody DeleteCommand[] commands) {
         try {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | QuerySyntaxException e) {
             e.printStackTrace();
+            eventService.addFailedModifyEvent(commands);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -62,12 +63,12 @@ public class EventController {
     public ResponseEntity<?> addReadEvent(@RequestBody Query[] queries) {
         try {
             return new ResponseEntity<>(eventService.addReadEvent(queries), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | QuerySyntaxException e) {
             e.printStackTrace();
+            eventService.addFailedReadEvent(queries);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
-
 
 
 }
