@@ -1,10 +1,13 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Document(collection = "ReadEvent")
 public class ReadEvent extends Event {
     private List<Query> queries;
 

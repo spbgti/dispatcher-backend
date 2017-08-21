@@ -1,13 +1,18 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Id;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+@Document(collection = "Event")
 public class Event {
+    @Id
+    private String id;
     private User user;
     private SessionInfo session;
-
 
     public Event() {
     }

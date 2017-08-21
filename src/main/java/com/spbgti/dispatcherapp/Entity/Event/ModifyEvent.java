@@ -1,6 +1,7 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
 import javassist.tools.rmi.ObjectNotFoundException;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+@Document(collection = "ModifyEvent")
 public class ModifyEvent extends Event {
     private List<Command> commands;
 
