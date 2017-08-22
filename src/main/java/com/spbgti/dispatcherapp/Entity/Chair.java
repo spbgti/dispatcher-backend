@@ -19,7 +19,8 @@ public class Chair {
     @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
 
-    public Chair(){}
+    public Chair() {
+    }
 
     public Chair(String name, Faculty faculty) {
         this.name = name;

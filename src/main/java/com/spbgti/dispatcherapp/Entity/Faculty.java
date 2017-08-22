@@ -1,6 +1,5 @@
 package com.spbgti.dispatcherapp.Entity;
 
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

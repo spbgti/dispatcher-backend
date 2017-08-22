@@ -22,7 +22,7 @@ public class ReadEvent extends Event {
     @Override
     public List<Object> apply(EntityManager entityManager) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         List<Object> result = new ArrayList<>();
-        for(Query query : queries) {
+        for (Query query : queries) {
             result.add(query.apply(entityManager));
         }
         return result;

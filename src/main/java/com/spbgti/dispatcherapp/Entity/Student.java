@@ -1,10 +1,13 @@
 package com.spbgti.dispatcherapp.Entity;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@DiscriminatorValue(value="student")
-public class Student extends Person{
+@DiscriminatorValue(value = "student")
+public class Student extends Person {
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = false)

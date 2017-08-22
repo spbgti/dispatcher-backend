@@ -16,10 +16,11 @@ public class Group {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "education_form",  nullable = false)
+    @Column(name = "education_form", nullable = false)
     private EducationForm educationForm;
 
-    public Group(){}
+    public Group() {
+    }
 
     public Group(String name, EducationForm educationForm) {
         this.name = name;

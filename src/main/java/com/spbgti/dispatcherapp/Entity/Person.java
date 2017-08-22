@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PERSON")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn( name="educational_type")
+@DiscriminatorColumn(name = "educational_type")
 public class Person {
     @Id
     @GeneratedValue(generator = "increment")

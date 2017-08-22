@@ -33,7 +33,7 @@ public class UpdateCommand implements Command {
                 + " SET " + this.field
                 + " " + " = :fieldValue "
                 + "WHERE id = :idValue";
-        Object newObject = new ClassParser().parse((LinkedHashMap)this.newEntity, this.type);
+        Object newObject = new ClassParser().parse((LinkedHashMap) this.newEntity, this.type);
         newObject.getClass().getMethod("setId", long.class).invoke(newObject, this.entityId);
         Object field = new ClassParser().getField((LinkedHashMap) this.newEntity, this.type, this.field);
         entityManager

@@ -1,16 +1,19 @@
 package com.spbgti.dispatcherapp.Entity;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@DiscriminatorValue(value="teacher")
-public class Teacher extends Person{
+@DiscriminatorValue(value = "teacher")
+public class Teacher extends Person {
 
     @ManyToOne
     @JoinColumn(name = "chair_id", nullable = false)
     private Chair chair;
 
-    public Teacher(){
+    public Teacher() {
 
     }
 

@@ -19,25 +19,25 @@ public class Query {
 
     public List apply(EntityManager entityManager) throws ClassNotFoundException {
         String sqlString = "SELECT *" /*+ this.type*/ + " FROM " + new ClassParser().firstCharToUpperCase(this.type);// + " f ";
-        Set set = ((LinkedHashMap)this.params).entrySet();
+        Set set = ((LinkedHashMap) this.params).entrySet();
         Iterator i = set.iterator();
-        if(i.hasNext()){
+        if (i.hasNext()) {
             sqlString += " WHERE ";
         }
-        while(i.hasNext()) {
-            Map.Entry me = (Map.Entry)i.next();
-            if(i.hasNext()) {
+        while (i.hasNext()) {
+            Map.Entry me = (Map.Entry) i.next();
+            if (i.hasNext()) {
                 sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value AND ";
-            }else{
+            } else {
                 sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value";
             }
         }
         System.out.println(sqlString);
         javax.persistence.Query query = entityManager.createNativeQuery(sqlString, new ClassParser().getClassFor(this.type));
-        set = ((LinkedHashMap)this.params).entrySet();
+        set = ((LinkedHashMap) this.params).entrySet();
         i = set.iterator();
-        while(i.hasNext()) {
-            Map.Entry me = (Map.Entry)i.next();
+        while (i.hasNext()) {
+            Map.Entry me = (Map.Entry) i.next();
             query.setParameter(me.getKey().toString() + "Value", me.getValue());
         }
         return query.getResultList();

@@ -38,7 +38,7 @@ public class CreateCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        Object object = new ClassParser().parse((LinkedHashMap)this.entity, this.type);
+        Object object = new ClassParser().parse((LinkedHashMap) this.entity, this.type);
         entityManager.persist(object);
         return object;
     }

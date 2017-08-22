@@ -26,7 +26,7 @@ public class DeleteCommand implements Command {
         String sqlQuery = "DELETE "
                 + new ClassParser().firstCharToUpperCase(type)
                 + " WHERE id = :idValue";
-        entityManager.createQuery(sqlQuery).setParameter("idValue", (long)this.entityId).executeUpdate();
+        entityManager.createQuery(sqlQuery).setParameter("idValue", (long) this.entityId).executeUpdate();
         return new Object();
     }
 

@@ -17,7 +17,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-public class Config{
+public class Config {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -31,7 +31,7 @@ public class Config{
     }
 
     @Bean
-    public DataSource dataSource(){
+    private DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/testdb");
@@ -41,18 +41,18 @@ public class Config{
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    Properties additionalProperties() {
+    private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");

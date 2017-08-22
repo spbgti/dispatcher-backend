@@ -1,11 +1,13 @@
 package com.spbgti.dispatcherapp.Entity;
 
-import javax.persistence.*;
-
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@DiscriminatorValue(value="candidate")
-public class Candidate extends Person{
+@DiscriminatorValue(value = "candidate")
+public class Candidate extends Person {
 
     @ManyToOne
     @JoinColumn(name = "speciality_id", nullable = false)
