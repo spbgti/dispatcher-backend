@@ -29,7 +29,7 @@ public class DeleteCommand implements Command {
                 + new ClassParser().firstCharToUpperCase(type)
                 + " WHERE id = :idValue";
         entityManager.createQuery(sqlQuery).setParameter("idValue", (long) this.entityId).executeUpdate();
-        return new Object();
+        return null;
     }
 
     public String getType() {
