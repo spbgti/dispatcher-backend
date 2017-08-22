@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.InvocationTargetException;
 
 @RestController
 @RequestMapping(value = "/event")
@@ -34,7 +33,7 @@ public class EventController {
         }
     }
 
-    @RequestMapping(value = "/create",
+    @RequestMapping(value = "/update",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateModifyEvent(@RequestBody UpdateCommand[] commands) {
@@ -47,7 +46,7 @@ public class EventController {
         }
     }
 
-    @RequestMapping(value = "/create",
+    @RequestMapping(value = "/delete",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteModifyEvent(@RequestBody DeleteCommand[] commands) {
@@ -60,7 +59,7 @@ public class EventController {
         }
     }
 
-    @RequestMapping(value = "/create",
+    @RequestMapping(value = "/query",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addReadEvent(@RequestBody Query[] queries) {
