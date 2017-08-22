@@ -26,9 +26,9 @@ public class EventController {
     public ResponseEntity<?> createModifyEvent(@RequestBody CreateCommand[] commands) {
         try {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | QuerySyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            eventService.addFailedModifyEvent(commands);
+            eventService.addFailedModifyEvent(commands, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -38,9 +38,9 @@ public class EventController {
     public ResponseEntity<?> updateModifyEvent(@RequestBody UpdateCommand[] commands) {
         try {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException | QuerySyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            eventService.addFailedModifyEvent(commands);
+            eventService.addFailedModifyEvent(commands, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -50,9 +50,9 @@ public class EventController {
     public ResponseEntity<?> deleteModifyEvent(@RequestBody DeleteCommand[] commands) {
         try {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | QuerySyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            eventService.addFailedModifyEvent(commands);
+            eventService.addFailedModifyEvent(commands, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -62,9 +62,9 @@ public class EventController {
     public ResponseEntity<?> addReadEvent(@RequestBody Query[] queries) {
         try {
             return new ResponseEntity<>(eventService.addReadEvent(queries), HttpStatus.OK);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException | QuerySyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            eventService.addFailedReadEvent(queries);
+            eventService.addFailedReadEvent(queries, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
