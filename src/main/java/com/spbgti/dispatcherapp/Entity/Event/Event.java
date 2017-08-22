@@ -22,6 +22,7 @@ public class Event {
     public Event(User user, SessionInfo session, String date) {
         this.user = user;
         this.session = session;
+        this.date = date;
     }
 
     public List<Object> apply(EntityManager entityManager) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
