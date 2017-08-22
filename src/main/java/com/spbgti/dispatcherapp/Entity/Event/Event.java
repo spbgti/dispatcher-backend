@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Document(collection = "Event")
-public class Event {
+public abstract class Event {
     @Id
     private String id;
     private String date;
@@ -24,9 +24,11 @@ public class Event {
         this.date = date;
     }
 
-    public List<Object> apply(EntityManager entityManager) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        return null;
-    }
+    public abstract List<Object> apply(EntityManager entityManager) throws ClassNotFoundException,
+            NoSuchMethodException,
+            InstantiationException,
+            IllegalAccessException,
+            InvocationTargetException;
 
     public User getUser() {
         return user;
