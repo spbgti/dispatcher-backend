@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
@@ -26,17 +28,17 @@ public class Config {
         em.setPackagesToScan("com.spbgti.dispatcherapp.Entity");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        em.setJpaProperties(getProperties());
         return em;
     }
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/testdb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setDriverClassName(getProperties().getProperty("spring.datasource.driver"));
+        dataSource.setUrl(getProperties().getProperty("spring.datasource.url"));
+        dataSource.setUsername(getProperties().getProperty("spring.datasource.username"));
+        dataSource.setPassword(getProperties().getProperty("spring.datasource.password"));
         return dataSource;
     }
 
@@ -52,10 +54,17 @@ public class Config {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    private Properties additionalProperties() {
+
+    private Properties getProperties(){
+        FileInputStream fileInputStream;
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        try{
+
+            fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
+            properties.load(fileInputStream);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         return properties;
     }
 }
