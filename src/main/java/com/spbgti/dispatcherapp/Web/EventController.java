@@ -21,7 +21,8 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    @RequestMapping(method = RequestMethod.POST,
+    @RequestMapping(value = "/create",
+            method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createModifyEvent(@RequestBody CreateCommand[] commands) {
         try {
@@ -33,7 +34,8 @@ public class EventController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT,
+    @RequestMapping(value = "/create",
+            method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateModifyEvent(@RequestBody UpdateCommand[] commands) {
         try {
@@ -45,7 +47,8 @@ public class EventController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE,
+    @RequestMapping(value = "/create",
+            method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteModifyEvent(@RequestBody DeleteCommand[] commands) {
         try {
@@ -57,7 +60,8 @@ public class EventController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PATCH,
+    @RequestMapping(value = "/create",
+            method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addReadEvent(@RequestBody Query[] queries) {
         try {
