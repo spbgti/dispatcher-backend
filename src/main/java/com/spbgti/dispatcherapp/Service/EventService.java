@@ -32,10 +32,13 @@ public class EventService {
         return result;
     }
 
-    public void addFailedModifyEvent(Command[] commands) {
+    public void addFailedModifyEvent(Command[] commands, Exception e) {
         List<Command> list = Arrays.asList(commands);
-        ModifyEvent modifyEvent = new ModifyEvent(new User(), new SessionInfo(), list);
-        mongoOperations.insert(modifyEvent, "failedModifyEvent");
+        FailedModifyEvent failedModifyEvent = new FailedModifyEvent(new User(),
+                new SessionInfo(),
+                list,
+                e.getClass().toString() + " " + e.getMessage());
+        mongoOperations.insert(failedModifyEvent, "failedModifyEvent");
     }
 
     public Object addReadEvent(Query[] queries) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -47,9 +50,12 @@ public class EventService {
         return result;
     }
 
-    public void addFailedReadEvent(Query[] queries) {
+    public void addFailedReadEvent(Query[] queries, Exception e) {
         List<Query> list = Arrays.asList(queries);
-        ReadEvent readEvent = new ReadEvent(new User(), new SessionInfo(), list);
-        mongoOperations.insert(readEvent, "failedReadEvent");
+        FailedReadEvent failedReadEvent = new FailedReadEvent(new User(),
+                new SessionInfo(),
+                list,
+                e.getClass().toString() + " " + e.getMessage());
+        mongoOperations.insert(failedReadEvent, "failedReadEvent");
     }
 }
