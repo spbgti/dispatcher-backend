@@ -1,5 +1,7 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import com.spbgti.dispatcherapp.Entity.Event.Command.Command;
+
 import java.util.List;
 
 public class FailedModifyEvent extends ModifyEvent {

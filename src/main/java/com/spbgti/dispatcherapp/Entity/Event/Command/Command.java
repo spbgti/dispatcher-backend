@@ -1,4 +1,4 @@
-package com.spbgti.dispatcherapp.Entity.Event;
+package com.spbgti.dispatcherapp.Entity.Event.Command;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;

@@ -1,6 +1,8 @@
 package com.spbgti.dispatcherapp.Service;
 
 import com.spbgti.dispatcherapp.Entity.Event.*;
+import com.spbgti.dispatcherapp.Entity.Event.Command.Command;
+import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;

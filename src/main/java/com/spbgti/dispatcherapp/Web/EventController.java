@@ -1,11 +1,10 @@
 package com.spbgti.dispatcherapp.Web;
 
-import com.spbgti.dispatcherapp.Entity.Event.CreateCommand;
-import com.spbgti.dispatcherapp.Entity.Event.DeleteCommand;
-import com.spbgti.dispatcherapp.Entity.Event.Query;
-import com.spbgti.dispatcherapp.Entity.Event.UpdateCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Command.CreateCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Command.DeleteCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
+import com.spbgti.dispatcherapp.Entity.Event.Command.UpdateCommand;
 import com.spbgti.dispatcherapp.Service.EventService;
-import org.hibernate.hql.internal.ast.QuerySyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

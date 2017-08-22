@@ -1,5 +1,6 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
+import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.EntityManager;
