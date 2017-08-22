@@ -8,8 +8,8 @@ public class FailedReadEvent extends ReadEvent {
     public FailedReadEvent() {
     }
 
-    public FailedReadEvent(User user, SessionInfo session, List<Query> queries, String exception) {
-        super(user, session, queries);
+    public FailedReadEvent(User user, SessionInfo session, String date, List<Query> queries, String exception) {
+        super(user, session, date, queries);
         this.exception = exception;
     }
 

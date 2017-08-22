@@ -5,19 +5,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "Event")
 public class Event {
     @Id
     private String id;
+    private String date;
     private User user;
     private SessionInfo session;
 
     public Event() {
     }
 
-    public Event(User user, SessionInfo session) {
+    public Event(User user, SessionInfo session, String date) {
         this.user = user;
         this.session = session;
     }
@@ -32,5 +34,9 @@ public class Event {
 
     public SessionInfo getSession() {
         return session;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

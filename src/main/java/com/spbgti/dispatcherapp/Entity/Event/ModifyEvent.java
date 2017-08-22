@@ -15,8 +15,8 @@ public class ModifyEvent extends Event {
     public ModifyEvent() {
     }
 
-    public ModifyEvent(User user, SessionInfo session, List<Command> commands) {
-        super(user, session);
+    public ModifyEvent(User user, SessionInfo session, String date, List<Command> commands) {
+        super(user, session, date);
         this.commands = commands;
     }
 

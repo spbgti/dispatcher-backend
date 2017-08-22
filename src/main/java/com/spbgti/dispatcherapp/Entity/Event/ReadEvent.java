@@ -14,8 +14,8 @@ public class ReadEvent extends Event {
     public ReadEvent() {
     }
 
-    public ReadEvent(User user, SessionInfo session, List<Query> queries) {
-        super(user, session);
+    public ReadEvent(User user, SessionInfo session, String date, List<Query> queries) {
+        super(user, session, date);
         this.queries = queries;
     }
 

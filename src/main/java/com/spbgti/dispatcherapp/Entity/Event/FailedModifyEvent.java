@@ -8,8 +8,8 @@ public class FailedModifyEvent extends ModifyEvent {
     public FailedModifyEvent() {
     }
 
-    public FailedModifyEvent(User user, SessionInfo session, List<Command> commands, String exception) {
-        super(user, session, commands);
+    public FailedModifyEvent(User user, SessionInfo session, String date, List<Command> commands, String exception) {
+        super(user, session, date, commands);
         this.exception = exception;
     }
 
