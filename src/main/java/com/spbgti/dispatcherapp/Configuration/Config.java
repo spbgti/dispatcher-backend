@@ -54,15 +54,13 @@ public class Config {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-
-    private Properties getProperties(){
+    private Properties getProperties() {
         FileInputStream fileInputStream;
         Properties properties = new Properties();
-        try{
-
+        try {
             fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
             properties.load(fileInputStream);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return properties;

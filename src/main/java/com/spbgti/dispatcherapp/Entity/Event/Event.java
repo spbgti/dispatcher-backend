@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
 import java.util.List;
 
 @Document(collection = "Event")

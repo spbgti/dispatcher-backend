@@ -2,7 +2,7 @@ package com.spbgti.dispatcherapp.Entity.Event;
 
 public class SessionInfo {
     private String ip;
-    private String other; // <<---- ??
+    private String other;
 
     public SessionInfo() {
     }
