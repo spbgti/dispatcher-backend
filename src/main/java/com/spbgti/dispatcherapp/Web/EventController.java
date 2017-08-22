@@ -1,4 +1,4 @@
-package com.spbgti.dispatcherapp.web;
+package com.spbgti.dispatcherapp.Web;
 
 import com.spbgti.dispatcherapp.Entity.Event.CreateCommand;
 import com.spbgti.dispatcherapp.Entity.Event.DeleteCommand;
