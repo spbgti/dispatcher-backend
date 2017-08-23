@@ -26,8 +26,8 @@ public class ClassParser {
         return obj;
     }
 
-    public String firstCharToUpperCase(String target) {
-        return Character.toUpperCase(target.charAt(0)) + target.substring(1);
+    public String firstCharToUpperCase(String s) {
+        return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
     public Class getClassFor(String type) throws ClassNotFoundException {
