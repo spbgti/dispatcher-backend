@@ -5,6 +5,8 @@ import com.spbgti.dispatcherapp.Entity.Event.Command.DeleteCommand;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
 import com.spbgti.dispatcherapp.Entity.Event.Command.UpdateCommand;
 import com.spbgti.dispatcherapp.Service.EventService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/event")
 public class EventController {
+    private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
     @Autowired
     private EventService eventService;
@@ -30,6 +33,7 @@ public class EventController {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error(e.getMessage());
             eventService.addFailedModifyEvent(commands, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
@@ -43,6 +47,7 @@ public class EventController {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error(e.getMessage());
             eventService.addFailedModifyEvent(commands, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
@@ -56,6 +61,7 @@ public class EventController {
             return new ResponseEntity<>(eventService.addModifyEvent(commands), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error(e.getMessage());
             eventService.addFailedModifyEvent(commands, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
@@ -69,6 +75,7 @@ public class EventController {
             return new ResponseEntity<>(eventService.addReadEvent(queries), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error(e.toString());
             eventService.addFailedReadEvent(queries, e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
