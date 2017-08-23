@@ -5,8 +5,8 @@ import com.spbgti.dispatcherapp.Entity.Event.Command.DeleteCommand;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
 import com.spbgti.dispatcherapp.Entity.Event.Command.UpdateCommand;
 import com.spbgti.dispatcherapp.Service.EventService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/event")
 public class EventController {
-    private static final Logger logger = LoggerFactory.getLogger(EventController.class);
+    private static final Logger logger = LogManager.getLogger(EventController.class);
 
     @Autowired
     private EventService eventService;
