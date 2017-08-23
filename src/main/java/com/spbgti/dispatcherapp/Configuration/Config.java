@@ -16,8 +16,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
@@ -65,18 +63,6 @@ public class Config {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
         properties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
-        return properties;
-    }
-
-    private Properties getProperties() {
-        FileInputStream fileInputStream;
-        Properties properties = new Properties();
-        try {
-            fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return properties;
     }
 }
