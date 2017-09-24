@@ -1,6 +1,8 @@
 package com.spbgti.dispatcherapp.Entity.Event.Command;
 
 import com.spbgti.dispatcherapp.Entity.Event.ClassParser;
+import com.spbgti.dispatcherapp.Repository.EntityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
@@ -12,6 +14,9 @@ public class UpdateCommand implements Command {
     private String field;
     private Object oldEntity;
     private Object newEntity;
+
+    @Autowired
+    private EntityRepository repository;
 
     public UpdateCommand() {
     }
@@ -25,25 +30,13 @@ public class UpdateCommand implements Command {
     }
 
     @Override
-    public Object apply(EntityManager entityManager) throws
+    public Object apply() throws
             ClassNotFoundException,
             NoSuchMethodException,
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        String sqlQuery = "UPDATE " + new ClassParser().firstCharToUpperCase(this.type)
-                + " SET " + this.field
-                + " " + " = :fieldValue "
-                + "WHERE id = :idValue";
-        Object newObject = new ClassParser().parse((LinkedHashMap) this.newEntity, this.type);
-        newObject.getClass().getMethod("setId", long.class).invoke(newObject, this.entityId);
-        Object field = new ClassParser().getField((LinkedHashMap) this.newEntity, this.type, this.field);
-        entityManager
-                .createQuery(sqlQuery)
-                .setParameter("fieldValue", field)
-                .setParameter("idValue", (long) this.entityId)
-                .executeUpdate();
-        return newObject;
+        return repository.update(this);
     }
 
     public String getType() {

@@ -3,8 +3,8 @@ package com.spbgti.dispatcherapp.Service;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Command;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
 import com.spbgti.dispatcherapp.Entity.Event.*;
+import com.spbgti.dispatcherapp.Repository.mongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,47 +20,52 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 public class EventService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Autowired
-    private MongoOperations mongoOperations;
+    private mongoRepository mongoRepository;
+
+    /*@PersistenceContext
+    private EntityManager entityManager;*/
+
 
     public Object addModifyEvent(Command[] commands) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         List<Object> result;
         List<Command> list = Arrays.asList(commands);
         ModifyEvent modifyEvent = new ModifyEvent(new User(), new SessionInfo(), new Date().toString(), list);
-        result = modifyEvent.apply(entityManager);
-        mongoOperations.insert(modifyEvent, "successfulModifyEvent");
+        result = modifyEvent.apply();
+        mongoRepository.addSuccessfulEvent(modifyEvent);
         return result;
     }
 
     public void addFailedModifyEvent(Command[] commands, Exception e) {
         List<Command> list = Arrays.asList(commands);
-        FailedModifyEvent failedModifyEvent = new FailedModifyEvent(new User(),
-                new SessionInfo(),
-                new Date().toString(),
-                list,
+        FailedEvent failedModifyEvent = new FailedEvent(
+                new ModifyEvent(
+                        new User(),
+                        new SessionInfo(),
+                        new Date().toString(),
+                        list),
                 e.getClass().toString() + " " + e.getMessage());
-        mongoOperations.insert(failedModifyEvent, "failedModifyEvent");
+        mongoRepository.addFailedEvent(failedModifyEvent);
     }
 
     public Object addReadEvent(Query[] queries) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         List<Object> result;
         List<Query> list = Arrays.asList(queries);
         ReadEvent readEvent = new ReadEvent(new User(), new SessionInfo(), new Date().toString(), list);
-        result = readEvent.apply(entityManager);
-        mongoOperations.insert(readEvent, "successfulReadEvent");
+        result = readEvent.apply();
+        mongoRepository.addSuccessfulEvent(readEvent);
         return result;
     }
 
     public void addFailedReadEvent(Query[] queries, Exception e) {
         List<Query> list = Arrays.asList(queries);
-        FailedReadEvent failedReadEvent = new FailedReadEvent(new User(),
-                new SessionInfo(),
-                new Date().toString(),
-                list,
+        FailedEvent failedReadEvent = new FailedEvent(
+                new ReadEvent(
+                        new User(),
+                        new SessionInfo(),
+                        new Date().toString(),
+                        list),
                 e.getClass().toString() + " " + e.getMessage());
-        mongoOperations.insert(failedReadEvent, "failedReadEvent");
+        mongoRepository.addFailedEvent(failedReadEvent);
     }
 }

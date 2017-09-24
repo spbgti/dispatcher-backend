@@ -59,7 +59,7 @@ public class Config {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    private Properties additionalProperties() {
+    public Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
         properties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));

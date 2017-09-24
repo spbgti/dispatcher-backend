@@ -1,14 +1,19 @@
 package com.spbgti.dispatcherapp.Entity.Event.Command;
 
 import com.spbgti.dispatcherapp.Entity.Event.ClassParser;
+import com.spbgti.dispatcherapp.Repository.EntityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import java.util.*;
 
-public class Query {
+public class Query implements Command{
     private String type;
     private boolean oneOrMany;
     private Object params;
+
+    @Autowired
+    EntityRepository entityRepository;
 
     public Query() {
     }
@@ -19,30 +24,8 @@ public class Query {
         this.params = params;
     }
 
-    public List apply(EntityManager entityManager) throws ClassNotFoundException {
-        String sqlString = "SELECT *" /*+ this.type*/ + " FROM " + new ClassParser().firstCharToUpperCase(this.type);// + " f ";
-        Set set = ((LinkedHashMap) this.params).entrySet();
-        Iterator i = set.iterator();
-        if (i.hasNext()) {
-            sqlString += " WHERE ";
-        }
-        while (i.hasNext()) {
-            Map.Entry me = (Map.Entry) i.next();
-            if (i.hasNext()) {
-                sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value AND ";
-            } else {
-                sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value";
-            }
-        }
-        System.out.println(sqlString);
-        javax.persistence.Query query = entityManager.createNativeQuery(sqlString, new ClassParser().getClassFor(this.type));
-        set = ((LinkedHashMap) this.params).entrySet();
-        i = set.iterator();
-        while (i.hasNext()) {
-            Map.Entry me = (Map.Entry) i.next();
-            query.setParameter(me.getKey().toString() + "Value", me.getValue());
-        }
-        return query.getResultList();
+    public List apply() throws ClassNotFoundException {
+        return entityRepository.executeQuery(this);
     }
 
     public String getType() {

@@ -1,14 +1,17 @@
 package com.spbgti.dispatcherapp.Entity.Event.Command;
 
-import com.spbgti.dispatcherapp.Entity.Event.ClassParser;
+import com.spbgti.dispatcherapp.Repository.EntityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
 public class CreateCommand implements Command {
     private String type;
     private Object entity;
+
+    @Autowired
+    EntityRepository entityRepository;
 
     public CreateCommand() {
     }
@@ -35,13 +38,11 @@ public class CreateCommand implements Command {
     }
 
     @Override
-    public Object apply(EntityManager entityManager) throws ClassNotFoundException,
+    public Object apply() throws ClassNotFoundException,
             NoSuchMethodException,
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        Object object = new ClassParser().parse((LinkedHashMap) this.entity, this.type);
-        entityManager.persist(object);
-        return object;
+        return this.entityRepository.create(this);
     }
 }

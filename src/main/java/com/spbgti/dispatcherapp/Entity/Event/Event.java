@@ -24,7 +24,7 @@ public abstract class Event {
         this.date = date;
     }
 
-    public abstract List<Object> apply(EntityManager entityManager) throws ClassNotFoundException,
+    public abstract List<Object> apply() throws ClassNotFoundException,
             NoSuchMethodException,
             InstantiationException,
             IllegalAccessException,
