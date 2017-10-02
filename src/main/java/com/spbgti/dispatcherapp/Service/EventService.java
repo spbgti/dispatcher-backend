@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Date;
@@ -22,9 +20,6 @@ public class EventService {
 
     @Autowired
     private mongoRepository mongoRepository;
-
-    /*@PersistenceContext
-    private EntityManager entityManager;*/
 
 
     public Object addModifyEvent(Command[] commands) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -68,4 +63,5 @@ public class EventService {
                 e.getClass().toString() + " " + e.getMessage());
         mongoRepository.addFailedEvent(failedReadEvent);
     }
+
 }
