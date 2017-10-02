@@ -1,11 +1,13 @@
 package com.spbgti.dispatcherapp.Entity.Event.Command;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.spbgti.dispatcherapp.Repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
+@JsonTypeName(value = "create")
 public class CreateCommand implements Command {
     private String type;
     private Object entity;
@@ -43,6 +45,6 @@ public class CreateCommand implements Command {
             InvocationTargetException,
             InstantiationException,
             IllegalAccessException {
-        return this.entityRepository.create(this);
+        return entityRepository.create(this);
     }
 }

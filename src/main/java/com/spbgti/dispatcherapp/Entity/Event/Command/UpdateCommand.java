@@ -1,13 +1,12 @@
 package com.spbgti.dispatcherapp.Entity.Event.Command;
 
-import com.spbgti.dispatcherapp.Entity.Event.ClassParser;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.spbgti.dispatcherapp.Repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
-import java.util.LinkedHashMap;
 
+@JsonTypeName(value = "update")
 public class UpdateCommand implements Command {
     private String type;
     private int entityId;

@@ -1,14 +1,13 @@
 package com.spbgti.dispatcherapp.Entity.Event.Command;
 
-import com.spbgti.dispatcherapp.Entity.Event.ClassParser;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.spbgti.dispatcherapp.Repository.EntityRepository;
-import com.spbgti.dispatcherapp.Service.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
 @Component
+@JsonTypeName(value = "delete")
 public class DeleteCommand implements Command {
 
     private String type;

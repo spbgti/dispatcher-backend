@@ -1,11 +1,17 @@
 package com.spbgti.dispatcherapp.Configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spbgti.dispatcherapp.Entity.Event.Command.CreateCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Command.DeleteCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Command.QueryImpl;
+import com.spbgti.dispatcherapp.Entity.Event.Command.UpdateCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -57,6 +63,22 @@ public class Config {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilder objectMapperBuilder() {
+        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder() {
+            public void configure(ObjectMapper objectMapper) {
+                objectMapper.registerSubtypes(CreateCommand.class);
+                objectMapper.registerSubtypes(UpdateCommand.class);
+                objectMapper.registerSubtypes(DeleteCommand.class);
+                objectMapper.registerSubtypes(QueryImpl.class);
+                super.configure(objectMapper);
+            }
+
+            ;
+        };
+        return builder;
     }
 
     public Properties additionalProperties() {
