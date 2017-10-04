@@ -24,11 +24,7 @@ public abstract class Event {
         this.date = date;
     }
 
-    public abstract List<Object> apply() throws ClassNotFoundException,
-            NoSuchMethodException,
-            InstantiationException,
-            IllegalAccessException,
-            InvocationTargetException;
+    public abstract List<Object> apply() throws Exception;
 
     public User getUser() {
         return user;

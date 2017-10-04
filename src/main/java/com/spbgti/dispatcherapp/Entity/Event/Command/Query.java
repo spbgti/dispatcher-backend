@@ -6,5 +6,5 @@ import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public interface Query {
-    public List execute() throws ClassNotFoundException;
+    public List execute() throws Exception;
 }

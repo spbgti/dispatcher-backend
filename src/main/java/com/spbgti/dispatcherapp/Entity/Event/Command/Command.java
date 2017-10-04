@@ -6,9 +6,5 @@ import java.lang.reflect.InvocationTargetException;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public interface Command {
-    public Object apply() throws ClassNotFoundException,
-            NoSuchMethodException,
-            InvocationTargetException,
-            InstantiationException,
-            IllegalAccessException;
+    public Object apply() throws Exception;
 }

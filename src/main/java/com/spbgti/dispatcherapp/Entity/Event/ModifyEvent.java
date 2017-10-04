@@ -22,7 +22,7 @@ public class ModifyEvent extends Event {
     }
 
     @Override
-    public List<Object> apply() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public List<Object> apply() throws Exception {
         List<Object> list = new ArrayList<>();
         for (Command command : commands) {
             list.add(command.apply());

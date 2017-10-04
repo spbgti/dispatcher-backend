@@ -24,7 +24,7 @@ public class QueryImpl implements Query{
         this.params = params;
     }
 
-    public List execute() throws ClassNotFoundException {
+    public List execute() throws Exception {
         return entityRepository.executeQuery(this);
     }
 

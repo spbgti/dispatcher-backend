@@ -5,7 +5,6 @@ import com.spbgti.dispatcherapp.Repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.InvocationTargetException;
 @Component
 @JsonTypeName(value = "delete")
 public class DeleteCommand implements Command {
@@ -25,11 +24,7 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public Object apply() throws ClassNotFoundException,
-            NoSuchMethodException,
-            InvocationTargetException,
-            InstantiationException,
-            IllegalAccessException {
+    public Object apply() throws Exception {
         return entityRepository.delete(this);
     }
 

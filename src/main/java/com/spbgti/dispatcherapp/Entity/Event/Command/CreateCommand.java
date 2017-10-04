@@ -40,11 +40,7 @@ public class CreateCommand implements Command {
     }
 
     @Override
-    public Object apply() throws ClassNotFoundException,
-            NoSuchMethodException,
-            InvocationTargetException,
-            InstantiationException,
-            IllegalAccessException {
+    public Object apply() throws Exception {
         return entityRepository.create(this);
     }
 }

@@ -21,7 +21,7 @@ public class ReadEvent extends Event {
     }
 
     @Override
-    public List<Object> apply() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public List<Object> apply() throws Exception {
         List<Object> result = new ArrayList<>();
         for (Query query : queries) {
             result.add(query.execute());
