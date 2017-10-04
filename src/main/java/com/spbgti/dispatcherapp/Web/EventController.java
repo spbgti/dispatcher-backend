@@ -1,6 +1,11 @@
 package com.spbgti.dispatcherapp.Web;
 
-import com.spbgti.dispatcherapp.Entity.Event.Command.*;
+import com.spbgti.dispatcherapp.Entity.Event.Command.Command;
+import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
+import com.spbgti.dispatcherapp.Entity.Event.ModifyEvent;
+import com.spbgti.dispatcherapp.Entity.Event.ReadEvent;
+import com.spbgti.dispatcherapp.Entity.Event.SessionInfo;
+import com.spbgti.dispatcherapp.Entity.Event.User;
 import com.spbgti.dispatcherapp.Service.EventService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.Date;
 
 
 @RestController
@@ -38,7 +44,13 @@ public class EventController {
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.getMessage());
-            eventService.addFailedModifyEvent(commands, e);
+            eventService.addFailedEvent(
+                    new ModifyEvent(
+                            new User(),
+                            new SessionInfo(),
+                            new Date().toString(),
+                            Arrays.asList(commands)),
+                    e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
@@ -53,9 +65,14 @@ public class EventController {
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.toString());
-            eventService.addFailedReadEvent(queries, e);
+            eventService.addFailedEvent(
+                    new ReadEvent(
+                            new User(),
+                            new SessionInfo(),
+                            new Date().toString(),
+                            Arrays.asList(queries)),
+                    e);
             return new ResponseEntity<>(e.getCause() + " " + e.getMessage(), HttpStatus.OK);
         }
     }
-
 }

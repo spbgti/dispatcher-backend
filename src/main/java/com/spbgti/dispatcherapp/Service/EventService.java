@@ -21,47 +21,24 @@ public class EventService {
     @Autowired
     private mongoRepository mongoRepository;
 
-
-    public Object addModifyEvent(Command[] commands) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        List<Object> result;
-        List<Command> list = Arrays.asList(commands);
-        ModifyEvent modifyEvent = new ModifyEvent(new User(), new SessionInfo(), new Date().toString(), list);
-        result = modifyEvent.apply();
+    public Object addModifyEvent(Command[] commands) throws Exception {
+        ModifyEvent modifyEvent = new ModifyEvent(new User(), new SessionInfo(), new Date().toString(), Arrays.asList(commands));
+        List<Object> result = modifyEvent.apply();
         mongoRepository.addSuccessfulEvent(modifyEvent);
         return result;
     }
 
-    public void addFailedModifyEvent(Command[] commands, Exception e) {
-        List<Command> list = Arrays.asList(commands);
-        FailedEvent failedModifyEvent = new FailedEvent(
-                new ModifyEvent(
-                        new User(),
-                        new SessionInfo(),
-                        new Date().toString(),
-                        list),
-                e.getClass().toString() + " " + e.getMessage());
-        mongoRepository.addFailedEvent(failedModifyEvent);
-    }
-
-    public Object addReadEvent(Query[] queries) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        List<Object> result;
-        List<Query> list = Arrays.asList(queries);
-        ReadEvent readEvent = new ReadEvent(new User(), new SessionInfo(), new Date().toString(), list);
-        result = readEvent.apply();
+    public Object addReadEvent(Query[] queries) throws Exception {
+        ReadEvent readEvent = new ReadEvent(new User(), new SessionInfo(), new Date().toString(), Arrays.asList(queries));
+        List<Object> result = readEvent.apply();
         mongoRepository.addSuccessfulEvent(readEvent);
         return result;
     }
 
-    public void addFailedReadEvent(Query[] queries, Exception e) {
-        List<Query> list = Arrays.asList(queries);
-        FailedEvent failedReadEvent = new FailedEvent(
-                new ReadEvent(
-                        new User(),
-                        new SessionInfo(),
-                        new Date().toString(),
-                        list),
+    public void addFailedEvent(Event event, Exception e) {
+        FailedEvent failedModifyEvent = new FailedEvent(
+                event,
                 e.getClass().toString() + " " + e.getMessage());
-        mongoRepository.addFailedEvent(failedReadEvent);
+        mongoRepository.addFailedEvent(failedModifyEvent);
     }
-
 }

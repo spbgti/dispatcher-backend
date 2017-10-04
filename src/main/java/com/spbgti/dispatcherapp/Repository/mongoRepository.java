@@ -13,7 +13,7 @@ public class mongoRepository {
     MongoOperations mongoOperations;
 
     public void addSuccessfulEvent(Event event){
-        mongoOperations.insert(event, "successful" + event.getClass().getName());
+        mongoOperations.insert(event, "successful" + event.getClass().getSimpleName());
     }
 
     public void addFailedEvent(FailedEvent event){

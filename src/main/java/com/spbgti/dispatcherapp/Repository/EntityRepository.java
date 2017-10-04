@@ -18,26 +18,20 @@ import java.util.*;
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 public class EntityRepository {
 
-
     @PersistenceContext
     private EntityManager entityManager;
-
 
     public EntityRepository() {
 
     }
 
-    public Object create(CreateCommand createCommand) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public Object create(CreateCommand createCommand) throws Exception {
         Object object = new ClassParser().parse((LinkedHashMap) createCommand.getEntity(), createCommand.getType());
         entityManager.persist(object);
         return object;
     }
 
-    public Object update(UpdateCommand command) throws ClassNotFoundException,
-            NoSuchMethodException,
-            InvocationTargetException,
-            InstantiationException,
-            IllegalAccessException {
+    public Object update(UpdateCommand command) throws Exception {
 
         String sqlQuery = "UPDATE " + new ClassParser().firstCharToUpperCase(command.getType())
                 + " SET " + command.getField()
@@ -63,7 +57,7 @@ public class EntityRepository {
         return null;
     }
 
-    public List executeQuery(QueryImpl executableQuery) throws ClassNotFoundException {
+    public List executeQuery(QueryImpl executableQuery) throws Exception {
         String sqlString = "SELECT *" + " FROM " + new ClassParser().firstCharToUpperCase(executableQuery.getType());
         Set set = ((LinkedHashMap) executableQuery.getParams()).entrySet();
         Iterator i = set.iterator();
