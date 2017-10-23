@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 @Component(value = "Entity Repository")
@@ -80,9 +79,8 @@ public class EntityRepository {
         return query.getResultList();
     }
 
-    public Object migrate(MigrationCommand command){
-        //return entityManager.createNativeQuery(command.getSqlForApply()).executeUpdate();
-        return "1";
+    public Object migrate(MigrationCommand command) {
+        return entityManager.createNativeQuery(command.getSqlForApply()).executeUpdate();
     }
 
 }

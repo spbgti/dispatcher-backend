@@ -1,10 +1,8 @@
 package com.spbgti.dispatcherapp.Entity.Event;
 
 import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
-import com.spbgti.dispatcherapp.Entity.Event.Command.QueryImpl;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 

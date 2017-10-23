@@ -3,8 +3,6 @@ package com.spbgti.dispatcherapp.Entity.Event;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Command;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.EntityManager;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 

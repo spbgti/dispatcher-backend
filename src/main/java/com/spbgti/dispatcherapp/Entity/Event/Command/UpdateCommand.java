@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.spbgti.dispatcherapp.Repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.InvocationTargetException;
 
 @JsonTypeName(value = "update")
 public class UpdateCommand implements Command {

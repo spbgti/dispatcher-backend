@@ -12,11 +12,11 @@ public class mongoRepository {
     @Autowired
     MongoOperations mongoOperations;
 
-    public void addSuccessfulEvent(Event event){
+    public void addSuccessfulEvent(Event event) {
         mongoOperations.insert(event, "successful" + event.getClass().getSimpleName());
     }
 
-    public void addFailedEvent(FailedEvent event){
+    public void addFailedEvent(FailedEvent event) {
         mongoOperations.insert(event);
     }
 }
