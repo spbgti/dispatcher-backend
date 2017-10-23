@@ -1,10 +1,7 @@
 package com.spbgti.dispatcherapp.Repository;
 
 import com.spbgti.dispatcherapp.Entity.Event.ClassParser;
-import com.spbgti.dispatcherapp.Entity.Event.Command.CreateCommand;
-import com.spbgti.dispatcherapp.Entity.Event.Command.DeleteCommand;
-import com.spbgti.dispatcherapp.Entity.Event.Command.QueryImpl;
-import com.spbgti.dispatcherapp.Entity.Event.Command.UpdateCommand;
+import com.spbgti.dispatcherapp.Entity.Event.Command.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,6 +78,11 @@ public class EntityRepository {
             query.setParameter(me.getKey().toString() + "Value", me.getValue());
         }
         return query.getResultList();
+    }
+
+    public Object migrate(MigrationCommand command){
+        //return entityManager.createNativeQuery(command.getSqlForApply()).executeUpdate();
+        return "1";
     }
 
 }
