@@ -3,7 +3,7 @@ package com.spbgti.dispatcherapp.Service;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Command;
 import com.spbgti.dispatcherapp.Entity.Event.Command.Query;
 import com.spbgti.dispatcherapp.Entity.Event.*;
-import com.spbgti.dispatcherapp.Repository.mongoRepository;
+import com.spbgti.dispatcherapp.Repository.MongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,7 +18,7 @@ import java.util.List;
 public class EventService {
 
     @Autowired
-    private mongoRepository mongoRepository;
+    private MongoRepository mongoRepository;
 
     public Object addModifyEvent(Command[] commands) throws Exception {
         ModifyEvent modifyEvent = new ModifyEvent(new User(), new SessionInfo(), new Date().toString(), Arrays.asList(commands));
