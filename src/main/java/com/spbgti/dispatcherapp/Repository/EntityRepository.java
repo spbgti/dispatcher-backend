@@ -56,24 +56,18 @@ public class EntityRepository {
     public List executeQuery(QueryImpl executableQuery) throws Exception {
         String sqlString = "SELECT *" + " FROM " + new ClassParser().firstCharToUpperCase(executableQuery.getType());
         Set set = ((LinkedHashMap) executableQuery.getParams()).entrySet();
-        Iterator i = set.iterator();
-        if (i.hasNext()) {
+        if (!set.isEmpty()) {
             sqlString += " WHERE ";
         }
-        while (i.hasNext()) {
-            Map.Entry me = (Map.Entry) i.next();
-            if (i.hasNext()) {
-                sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value AND ";
-            } else {
-                sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value";
-            }
+        for(Object item : set){
+            Map.Entry me = (Map.Entry) item;
+            sqlString += me.getKey().toString() + " = :" + me.getKey().toString() + "Value AND ";
         }
+        sqlString = sqlString.substring(0, sqlString.length() - 4); //:c
         javax.persistence.Query query = entityManager.createNativeQuery(sqlString,
                 new ClassParser().getClassFor(executableQuery.getType()));
-        set = ((LinkedHashMap) executableQuery.getParams()).entrySet();
-        i = set.iterator();
-        while (i.hasNext()) {
-            Map.Entry me = (Map.Entry) i.next();
+        for(Object item : set){
+            Map.Entry me = (Map.Entry) item;
             query.setParameter(me.getKey().toString() + "Value", me.getValue());
         }
         return query.getResultList();
