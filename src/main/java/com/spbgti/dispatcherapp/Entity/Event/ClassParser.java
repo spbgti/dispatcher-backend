@@ -11,17 +11,11 @@ public class ClassParser {
     private final static String CLASS_NAME = "com.spbgti.dispatcherapp.Entity.";
     private static final Logger logger = LogManager.getLogger(ClassParser.class);
 
-    public Object parse(LinkedHashMap map, String type) throws Exception/*ClassNotFoundException,
-            IllegalAccessException,
-            InstantiationException,
-            NoSuchMethodException,
-            InvocationTargetException*/ {
+    public Object parse(LinkedHashMap map, String type) throws Exception {
         Class c = Class.forName(CLASS_NAME + firstCharToUpperCase(type));
         ObjectMapper mapper = new ObjectMapper();
         Object obj = mapper.convertValue(map, c);
-        if (logger.isDebugEnabled()) {
-            logger.debug(obj.toString());
-        }
+        logger.debug(obj.toString());
         return obj;
     }
 
