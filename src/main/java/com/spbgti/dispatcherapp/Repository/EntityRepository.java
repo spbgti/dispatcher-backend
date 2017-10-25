@@ -82,5 +82,4 @@ public class EntityRepository {
     public Object migrate(MigrationCommand command) {
         return entityManager.createNativeQuery(command.getSqlForApply()).executeUpdate();
     }
-
 }

@@ -75,8 +75,6 @@ public class Config {
                 objectMapper.registerSubtypes(QueryImpl.class);
                 super.configure(objectMapper);
             }
-
-            ;
         };
         return builder;
     }
