@@ -28,13 +28,13 @@ public class EntityRepository {
     }
 
     public Object update(UpdateCommand command) throws Exception {
-
         String sqlQuery = "UPDATE " + new ClassParser().firstCharToUpperCase(command.getType())
                 + " SET " + command.getField()
                 + " " + " = :fieldValue "
                 + "WHERE id = :idValue";
-        Object newObject = new ClassParser().parse((LinkedHashMap) command.getNewEntity(), command.getType());
-        Object field = new ClassParser().getField((LinkedHashMap) command.getNewEntity(),
+        ClassParser classParser = new ClassParser();
+        Object newObject = classParser.parse((LinkedHashMap) command.getNewEntity(), command.getType());
+        Object field = classParser.getField((LinkedHashMap) command.getNewEntity(),
                 command.getType(), command.getField());
         entityManager
                 .createQuery(sqlQuery)
